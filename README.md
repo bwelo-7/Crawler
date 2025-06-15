@@ -24,12 +24,4 @@ steps to get to the POC:
 [] enemy moves around walls to get to Bob.
 [] game over when enemy gets to bob 
 ```
-physics or pathfinding or maths
-x,y=coords on map
-dx,dy = speed
-ax,ay acceleration
-f= friction (related to speed)
-if (r=down) = ax= ax+10
-else ax=0
-dx= dx+(ax-f)
 x=x+dx
