@@ -6,12 +6,13 @@ from utils import bracket
 speed = 2
 ax = 1
 ay = 1
-
+spr_width = 20
+spr_height = 30
 
 class Bob(pygame.sprite.Sprite):
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface((20, 30))
+        self.image = pygame.Surface((spr_width, spr_height))
         self.image.fill(GREEN)
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH / 2
@@ -51,4 +52,6 @@ class Bob(pygame.sprite.Sprite):
 
         self.dx = bracket(self.dx, -10, 10)
         self.dy =bracket(self.dy, -10, 10)
+        self.rect.x = bracket(self.rect.x, 0,WIDTH - spr_width )
+        self.rect.y = bracket(self.rect.y, 0,HEIGHT - spr_height)
         print("dx:", self.dx, "x: ", self.rect.x, "dy:", self.dy, "y: ", self.rect.y)

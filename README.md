@@ -10,19 +10,20 @@ requirements for the POC
 4. enemy pathfinding - to prove how clever ryan is.
 
 
-steps to get to the POC
-1. a map
-2. your Bob is an ice skater.
-3. you can move your Bob
-4. it should be constrained by the map
-5. make an enemy 
-6. Bob can shoot a fireball in the direction that you are facing
-7. fireball hits enemy and makes them dissapear
-8. enemy runs towards Bob
-9. map contains walls
-10. enemy moves around walls to get to Bob.
-11. game over when enemy gets to bob 
-
+steps to get to the POC:
+```
+[x] a map
+[x] your Bob is an ice skater.
+[x] you can move your Bob
+[x] it should be constrained by the map
+[] make an enemy 
+[] Bob can shoot a fireball in the direction that you are facing
+[] fireball hits enemy and makes them dissapear
+[] enemy runs towards Bob
+[] map contains walls
+[] enemy moves around walls to get to Bob.
+[] game over when enemy gets to bob 
+```
 physics or pathfinding or maths
 x,y=coords on map
 dx,dy = speed

@@ -3,6 +3,7 @@ WIDTH = 650
 HEIGHT = 650
 
 
+
 # define colours
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
