@@ -1,10 +1,15 @@
 import pygame
 
-from Crawler import GREEN, WIDTH, HEIGHT, x, y, keys, speed, ax, ay
+from stuff import GREEN, WIDTH, HEIGHT
+x = 325
+y = 610
+speed = 2
+ax = 10
+ay = 10
 
 
 class Bob(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, x,y):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface((20, 30))
         self.image.fill(GREEN)
@@ -18,7 +23,7 @@ class Bob(pygame.sprite.Sprite):
     #def constraints(player):
         #if self.rect.x >
 
-    def update(self):
+    def update(self, keys):
         if keys[pygame.K_a]:
             self.rect.x -= (speed * ax)
         if keys[pygame.K_d]:

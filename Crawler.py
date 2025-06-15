@@ -2,21 +2,7 @@ import pygame
 
 from Bob import Bob
 
-WIDTH = 650
-HEIGHT = 650
-FPS = 30
-x = 325
-y = 610
-speed = 2
-ax = 10
-ay = 10
-
-# define colours
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
+from stuff import BLACK, WIDTH, HEIGHT, FPS
 
 # initialize pygame and create window
 pygame.init()
@@ -26,7 +12,7 @@ pygame.display.set_caption('Crawler')
 clock = pygame.time.Clock()
 
 all_sprites = pygame.sprite.Group()
-player = Bob()
+player = Bob(200,200)
 all_sprites.add(player)
 #game loop
 running = True
@@ -42,7 +28,7 @@ while running:
 
     #pygame.draw.
     # Update
-    all_sprites.update()
+    all_sprites.update(keys)
     # Draw / render
     screen.fill(BLACK)
     all_sprites.draw(screen)
