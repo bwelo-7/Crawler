@@ -1,6 +1,7 @@
 import pygame
 
 from stuff import GREEN, WIDTH, HEIGHT
+from utils import bracket
 
 speed = 2
 ax = 1
@@ -48,4 +49,6 @@ class Bob(pygame.sprite.Sprite):
         if 0.1 > self.dy > -0.1:
             self.dy = 0
 
+        self.dx = bracket(self.dx, -10, 10)
+        self.dy =bracket(self.dy, -10, 10)
         print("dx:", self.dx, "x: ", self.rect.x, "dy:", self.dy, "y: ", self.rect.y)
