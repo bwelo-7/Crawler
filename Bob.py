@@ -46,14 +46,7 @@ class Bob(pygame.sprite.Sprite):
         if keys[pygame.K_s]:
             self.dy += ax
 
-        if keys[pygame.K_a]  == False:
-            self.dx * fx
-        if keys[pygame.K_d]  == False:
-            self.dx * fx
-        if keys[pygame.K_w] == False:
-            self.dy * fx
-        if keys[pygame.K_s] == False :
-            self.dy * fx
+
 
 
 
