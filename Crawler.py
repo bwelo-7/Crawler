@@ -2,8 +2,8 @@ import pygame
 
 from Bob import Bob
 
-from stuff import BLACK, WIDTH, HEIGHT, FPS
-
+from stuff import BLACK, WIDTH, HEIGHT
+FPS = 30
 # initialize pygame and create window
 pygame.init()
 pygame.mixer.init()
@@ -12,8 +12,8 @@ pygame.display.set_caption('Crawler')
 clock = pygame.time.Clock()
 
 all_sprites = pygame.sprite.Group()
-player = Bob(200,200)
-all_sprites.add(player)
+all_sprites.add(Bob(200, 200))
+
 #game loop
 running = True
 while running:

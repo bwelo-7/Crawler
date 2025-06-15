@@ -1,7 +1,7 @@
 
 WIDTH = 650
 HEIGHT = 650
-FPS = 30
+
 
 # define colours
 WHITE = (255, 255, 255)

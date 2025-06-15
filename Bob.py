@@ -1,29 +1,32 @@
 import pygame
 
 from stuff import GREEN, WIDTH, HEIGHT
-x = 325
-y = 610
+
 speed = 2
-ax = 10
-ay = 10
+ax = 1
+ay = 1
 
 
 class Bob(pygame.sprite.Sprite):
-    def __init__(self, x,y):
+    def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface((20, 30))
         self.image.fill(GREEN)
         self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH/2
-        self.rect.bottom = HEIGHT +20
-
+        self.rect.centerx = WIDTH / 2
+        self.rect.bottom = HEIGHT + 20
+        self.fx = 0.8
+        self.fy = 0.8
+        self.dx = 0
+        self.dy = 0
         self.rect.x = x
         self.rect.y = y
 
-    #def constraints(player):
-        #if self.rect.x >
-
     def update(self, keys):
+        self.dynamic_movement(keys)
+        # self.linear_movement(keys)
+
+    def linear_movement(self, keys):
         if keys[pygame.K_a]:
             self.rect.x -= (speed * ax)
         if keys[pygame.K_d]:
@@ -32,3 +35,29 @@ class Bob(pygame.sprite.Sprite):
             self.rect.y += ay
         if keys[pygame.K_w]:
             self.rect.y -= ay
+
+    def dynamic_movement(self, keys):
+        if keys[pygame.K_a]:
+            self.dx -= ax
+        if keys[pygame.K_d]:
+            self.dx += ax
+        if keys[pygame.K_w]:
+            self.dy -= ax
+        if keys[pygame.K_s]:
+            self.dy += ax
+
+        if keys[pygame.K_a]  == False:
+            self.dx * fx
+        if keys[pygame.K_d]  == False:
+            self.dx * fx
+        if keys[pygame.K_w] == False:
+            self.dy * fx
+        if keys[pygame.K_s] == False :
+            self.dy * fx
+
+
+
+        self.rect.x += self.dx
+        self.rect.y += self.dy
+
+        print("ax: ",ax, "dx:",self.dx, "x: ",self.rect.x)
