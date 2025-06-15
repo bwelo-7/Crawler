@@ -26,31 +26,26 @@ class Bob(pygame.sprite.Sprite):
         self.dynamic_movement(keys)
         # self.linear_movement(keys)
 
-    def linear_movement(self, keys):
-        if keys[pygame.K_a]:
-            self.rect.x -= (speed * ax)
-        if keys[pygame.K_d]:
-            self.rect.x += (speed * ax)
-        if keys[pygame.K_s]:
-            self.rect.y += ay
-        if keys[pygame.K_w]:
-            self.rect.y -= ay
-
     def dynamic_movement(self, keys):
         if keys[pygame.K_a]:
             self.dx -= ax
-        if keys[pygame.K_d]:
+        elif keys[pygame.K_d]:
             self.dx += ax
+        else:
+            self.dx *= self.fx
+
         if keys[pygame.K_w]:
-            self.dy -= ax
-        if keys[pygame.K_s]:
-            self.dy += ax
-
-
-
-
+            self.dy -= ay
+        elif keys[pygame.K_s]:
+            self.dy += ay
+        else:
+            self.dy *= self.fx
 
         self.rect.x += self.dx
         self.rect.y += self.dy
+        if 0.1 > self.dx > -0.1:
+            self.dx = 0
+        if 0.1 > self.dy > -0.1:
+            self.dy = 0
 
-        print("ax: ",ax, "dx:",self.dx, "x: ",self.rect.x)
+        print("dx:", self.dx, "x: ", self.rect.x, "dy:", self.dy, "y: ", self.rect.y)
