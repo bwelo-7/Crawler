@@ -12,7 +12,7 @@ requirements for the POC
 
 steps to get to the POC
 1. a map
-2. your Bob
+2. your Bob is an ice skater.
 3. you can move your Bob
 4. it should be constrained by the map
 5. make an enemy 
@@ -22,3 +22,13 @@ steps to get to the POC
 9. map contains walls
 10. enemy moves around walls to get to Bob.
 11. game over when enemy gets to bob 
+
+physics or pathfinding or maths
+x,y=coords on map
+dx,dy = speed
+ax,ay acceleration
+f= friction (related to speed)
+if (r=down) = ax= ax+10
+else ax=0
+dx= dx+(ax-f)
+x=x+dx
