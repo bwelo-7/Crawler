@@ -24,4 +24,3 @@ steps to get to the POC:
 [] enemy moves around walls to get to Bob.
 [] game over when enemy gets to bob 
 ```
-x=x+dx
