@@ -1,5 +1,5 @@
 import pygame
-
+from Bill import Bill
 from Bob import Bob
 
 from stuff import BLACK, WIDTH, HEIGHT
@@ -13,7 +13,7 @@ clock = pygame.time.Clock()
 
 all_sprites = pygame.sprite.Group()
 all_sprites.add(Bob(200, 200))
-
+all_sprites.add(Bill(300, 300))
 #game loop
 running = True
 while running:
