@@ -16,7 +16,7 @@ steps to get to the POC:
 [x] your Bob is an ice skater.
 [x] you can move your Bob
 [x] it should be constrained by the map
-[] make an enemy 
+[x] make an enemy 
 [] Bob can shoot a fireball in the direction that you are facing
 [] fireball hits enemy and makes them dissapear
 [] enemy runs towards Bob

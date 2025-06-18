@@ -9,20 +9,25 @@ ay = 1
 spr_width = 20
 spr_height = 30
 
-class Bob(pygame.sprite.Sprite):
+
+class Thing(pygame.sprite.Sprite):
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface((spr_width, spr_height))
         self.image.fill(GREEN)
         self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH / 2
-        self.rect.bottom = HEIGHT + 20
+        # self.rect.centerx = WIDTH / 2
+        # self.rect.bottom = HEIGHT + 20
         self.fx = 0.8
         self.fy = 0.8
         self.dx = 0
         self.dy = 0
         self.rect.x = x
         self.rect.y = y
+
+class Bob(Thing):
+    def __init__(self, x, y):
+            Thing.__init__(self,x,y)
 
     def update(self, keys):
         self.dynamic_movement(keys)
