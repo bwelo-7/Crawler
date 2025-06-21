@@ -4,8 +4,10 @@ from stuff import GREEN, WIDTH, HEIGHT
 from utils import bracket
 
 speed = 2
-ax = 1
-ay = 1
+ax = 0.5
+ay = 0.5
+t_ax = 1
+t_ax = 1
 spr_width = 20
 spr_height = 30
 
