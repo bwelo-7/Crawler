@@ -1,4 +1,5 @@
 import pygame
+from pygame.joystick import Joystick
 
 from stuff import GREEN, WIDTH, HEIGHT, spr_width, spr_height, ax, ay, speed
 from utils import bracket
@@ -26,9 +27,14 @@ class Bob(Thing):
     def __init__(self, x, y):
             Thing.__init__(self,x,y)
 
-    def update(self, keys):
+    def update(self, keys, joystick):
         self.dynamic_movement(keys)
+        self.con_movement(joystick)
         # self.linear_movement(keys)
+
+
+        self.rect.x += int(self.dx)
+        self.rect.y += int(self.dy)
 
     def dynamic_movement(self, keys):
         if keys[pygame.K_a]:
@@ -45,12 +51,31 @@ class Bob(Thing):
         else:
             self.dy *= self.fx
 
-        self.rect.x += self.dx
-        self.rect.y += self.dy
         if 0.1 > self.dx > -0.1:
             self.dx = 0
         if 0.1 > self.dy > -0.1:
             self.dy = 0
+
+    def con_movement(self, joystick):
+        left_x = joystick.get_axis(0)
+        left_y = joystick.get_axis(1)
+
+        deadzone = 0.4
+
+        if abs(left_x) < deadzone:
+            left_x = 0
+        if abs(left_y) < deadzone:
+            left_y = 0
+
+        if left_x != 0:
+            self.dx = left_x * ax
+        else:
+            self.dx *= self.fx
+
+        if left_y != 0:
+            self.dy = left_y * ay
+        else:
+            self.dy *= self.fy
 
         self.dx = bracket(self.dx, -10, 10)
         self.dy =bracket(self.dy, -10, 10)
