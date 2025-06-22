@@ -28,13 +28,25 @@ class Bob(Thing):
             Thing.__init__(self,x,y)
 
     def update(self, keys, joystick):
-        self.dynamic_movement(keys)
-        self.con_movement(joystick)
-        # self.linear_movement(keys)
+        deadzone = 0.1
+        left_x = joystick.get_axis(0)
+        left_y = joystick.get_axis(1)
 
+        if abs(left_x) > deadzone or abs(left_y) > deadzone:
+            self.con_movement(joystick)
+        else:
+            self.dynamic_movement(keys)
 
-        self.rect.x += int(self.dx)
-        self.rect.y += int(self.dy)
+        self.dx = bracket(self.dx, -10, 10)
+        self.dy = bracket(self.dy, -10, 10)
+
+        self.rect.x += (self.dx)
+        self.rect.y += (self.dy)
+
+        self.rect.x = bracket(self.rect.x, 0, WIDTH - spr_width)
+        self.rect.y = bracket(self.rect.y, 0, HEIGHT - spr_height)
+
+        print("dx:", self.dx, "x: ", self.rect.x, "dy:", self.dy, "y: ", self.rect.y)
 
     def dynamic_movement(self, keys):
         if keys[pygame.K_a]:
@@ -49,7 +61,7 @@ class Bob(Thing):
         elif keys[pygame.K_s]:
             self.dy += ay
         else:
-            self.dy *= self.fx
+            self.dy *= self.fy
 
         if 0.1 > self.dx > -0.1:
             self.dx = 0
@@ -77,8 +89,3 @@ class Bob(Thing):
         else:
             self.dy *= self.fy
 
-        self.dx = bracket(self.dx, -10, 10)
-        self.dy =bracket(self.dy, -10, 10)
-        self.rect.x = bracket(self.rect.x, 0, WIDTH - spr_width)
-        self.rect.y = bracket(self.rect.y, 0,HEIGHT - spr_height)
-        print("dx:", self.dx, "x: ", self.rect.x, "dy:", self.dy, "y: ", self.rect.y)

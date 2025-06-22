@@ -8,9 +8,8 @@ class Fireball(Thing):
         self.image = pygame.Surface((proj_width, proj_height))
         self.image.fill(ORANGE)
 
-
-    def update(self, keys):
-        self.shoot(keys)
+    def update(self, keys=None, joystick=None):
+        pass
 
     def shoot(self, keys):
         if keys[pygame.K_SPACE]:

@@ -44,11 +44,9 @@ while running:
             if event.type == pygame.QUIT:
                 running = False
     keys = pygame.key.get_pressed()
-
-    #pygame.draw.
     # Update
-    all_sprites.update(keys)
-    all_sprites.update(Joystick)
+    for sprite in all_sprites:
+        sprite.update(keys, joystick)
     # Draw / render
     screen.fill(BLACK)
     all_sprites.draw(screen)
