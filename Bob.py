@@ -27,10 +27,11 @@ class Bob(Thing):
     def __init__(self, x, y):
             Thing.__init__(self,x,y)
 
-    def update(self, keys, joystick):
+    def update(self, keys, joystick, walls):
         deadzone = 0.1
         left_x = joystick.get_axis(0)
         left_y = joystick.get_axis(1)
+        self.collide(walls)
 
         if abs(left_x) > deadzone or abs(left_y) > deadzone:
             self.con_movement(joystick)
