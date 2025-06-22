@@ -39,6 +39,7 @@ all_sprites.add(Bob(200, 200))
 all_sprites.add(Bill(300, 300))
 
 Fireball_cooldown = 500
+Fireball_cooldown_2 = 300
 last_fireball_time = 0
 
 
@@ -60,13 +61,22 @@ while running:
     R2_axis = joystick.get_axis(5)
 
     # Update
-    if R2_axis > 0.5:
+    if R2_axis > 0.0 and R2_axis < 0.5:
         for sprite in all_sprites:
             if isinstance(sprite, Bob):
                 if current_time - last_fireball_time > Fireball_cooldown:
                     fireball = Fireball(sprite.rect.centerx, sprite.rect.centery, dx = 0, dy= 10 )
                     all_sprites.add(fireball)
                     last_fireball_time = current_time
+
+    elif R2_axis >= 0.5:
+        for sprite in all_sprites:
+            if isinstance(sprite, Bob):
+                if current_time - last_fireball_time > Fireball_cooldown_2:
+                    fireball = Fireball(sprite.rect.centerx, sprite.rect.centery, dx = 0, dy= 10 )
+                    all_sprites.add(fireball)
+                    last_fireball_time = current_time
+
 
 
     for sprite in all_sprites:

@@ -17,7 +17,7 @@ steps to get to the POC:
 [x] you can move your Bob
 [x] it should be constrained by the map
 [x] make an enemy 
-[] Bob can shoot a fireball in the direction that you are facing
+[x] Bob can shoot a fireball in the direction that you are facing
 [] fireball hits enemy and makes them dissapear
 [] enemy runs towards Bob
 [] map contains walls
