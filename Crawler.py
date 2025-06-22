@@ -38,8 +38,8 @@ all_sprites.add(Bob(200, 200))
 
 all_sprites.add(Bill(300, 300))
 
-Fireball_cooldown = 500
-Fireball_cooldown_2 = 300
+Fireball_cooldown = 800
+Fireball_cooldown_2 = 400
 fireball_speed = 10
 last_fireball_time = 0
 
@@ -75,13 +75,16 @@ while running:
                     all_sprites.add(fireball)
                     last_fireball_time = current_time
 
-    # elif 0.0 < R2_axis <= 0.5:
-    #     for sprite in all_sprites:
-    #         if isinstance(sprite, Bob):
-    #             if current_time - last_fireball_time > Fireball_cooldown_2:
-    #                 fireball = Fireball(sprite.rect.centerx, sprite.rect.centery, dx = 0, dy= 10 )
-    #                 all_sprites.add(fireball)
-    #                 last_fireball_time = current_time
+    elif  R2_axis >= 0.5:
+        dx = (right_x / magnitude) * fireball_speed
+        dy = (right_y / magnitude) * fireball_speed
+
+        for sprite in all_sprites:
+            if isinstance(sprite, Bob):
+                if current_time - last_fireball_time > Fireball_cooldown_2:
+                    fireball = Fireball(sprite.rect.centerx, sprite.rect.centery, dx = dx, dy= dy )
+                    all_sprites.add(fireball)
+                    last_fireball_time = current_time
 
 
 
