@@ -1,6 +1,6 @@
 import pygame
 from pygame.joystick import Joystick
-
+import math
 from Bill import Bill
 from Bob import Bob
 from Fireball import Fireball
@@ -40,8 +40,8 @@ all_sprites.add(Bill(300, 300))
 
 Fireball_cooldown = 500
 Fireball_cooldown_2 = 300
+fireball_speed = 10
 last_fireball_time = 0
-
 
 
 #game loop
@@ -59,23 +59,29 @@ while running:
     keys = pygame.key.get_pressed()
     current_time = pygame.time.get_ticks()
     R2_axis = joystick.get_axis(5)
+    right_x = joystick.get_axis(2)
+    right_y = joystick.get_axis(3)
+    magnitude = math.hypot(right_x, right_y)
 
     # Update
-    if R2_axis > 0.0 and R2_axis < 0.5:
+    if R2_axis > -0.5 and magnitude > 0.1:
+        dx = (right_x / magnitude) * fireball_speed
+        dy = (right_y / magnitude) * fireball_speed
+
         for sprite in all_sprites:
             if isinstance(sprite, Bob):
                 if current_time - last_fireball_time > Fireball_cooldown:
-                    fireball = Fireball(sprite.rect.centerx, sprite.rect.centery, dx = 0, dy= 10 )
+                    fireball = Fireball(sprite.rect.centerx, sprite.rect.centery, dx = dx, dy= dy )
                     all_sprites.add(fireball)
                     last_fireball_time = current_time
 
-    elif R2_axis >= 0.5:
-        for sprite in all_sprites:
-            if isinstance(sprite, Bob):
-                if current_time - last_fireball_time > Fireball_cooldown_2:
-                    fireball = Fireball(sprite.rect.centerx, sprite.rect.centery, dx = 0, dy= 10 )
-                    all_sprites.add(fireball)
-                    last_fireball_time = current_time
+    # elif 0.0 < R2_axis <= 0.5:
+    #     for sprite in all_sprites:
+    #         if isinstance(sprite, Bob):
+    #             if current_time - last_fireball_time > Fireball_cooldown_2:
+    #                 fireball = Fireball(sprite.rect.centerx, sprite.rect.centery, dx = 0, dy= 10 )
+    #                 all_sprites.add(fireball)
+    #                 last_fireball_time = current_time
 
 
 

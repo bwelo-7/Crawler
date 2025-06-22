@@ -8,8 +8,8 @@ class Fireball(Thing):
         self.image = pygame.Surface((proj_width, proj_height))
         self.image.fill(ORANGE)
         self.rect = self.image.get_rect(center=(x, y))
-        self.dx = 10
-        self.dy = 0
+        self.dx = dx
+        self.dy = dy
 
     def update(self,keys, joystick):
         self.rect.x += int(self.dx)
