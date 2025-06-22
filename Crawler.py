@@ -1,6 +1,8 @@
 import pygame
 from Bill import Bill
 from Bob import Bob
+from Fireball import Fireball
+#from Controller import con_movement
 
 from stuff import BLACK, WIDTH, HEIGHT
 FPS = 30
@@ -14,6 +16,7 @@ clock = pygame.time.Clock()
 all_sprites = pygame.sprite.Group()
 all_sprites.add(Bob(200, 200))
 all_sprites.add(Bill(300, 300))
+all_sprites.add(Fireball(200 ,300))
 #game loop
 running = True
 while running:

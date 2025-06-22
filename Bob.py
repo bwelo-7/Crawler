@@ -1,15 +1,10 @@
 import pygame
 
-from stuff import GREEN, WIDTH, HEIGHT
+from stuff import GREEN, WIDTH, HEIGHT, spr_width, spr_height, ax, ay, speed
 from utils import bracket
 
-speed = 2
-ax = 0.5
-ay = 0.5
-t_ax = 1
-t_ax = 1
-spr_width = 20
-spr_height = 30
+
+
 
 
 class Thing(pygame.sprite.Sprite):
@@ -59,6 +54,6 @@ class Bob(Thing):
 
         self.dx = bracket(self.dx, -10, 10)
         self.dy =bracket(self.dy, -10, 10)
-        self.rect.x = bracket(self.rect.x, 0,WIDTH - spr_width )
+        self.rect.x = bracket(self.rect.x, 0, WIDTH - spr_width)
         self.rect.y = bracket(self.rect.y, 0,HEIGHT - spr_height)
         print("dx:", self.dx, "x: ", self.rect.x, "dy:", self.dy, "y: ", self.rect.y)

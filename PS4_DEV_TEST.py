@@ -26,6 +26,7 @@ threshold = 0.05  # Ignore small noise
 
 running = True
 while running:
+    print(prev_axis_values)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
