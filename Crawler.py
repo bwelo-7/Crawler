@@ -44,6 +44,9 @@ fireball_speed = 10
 last_fireball_time = 0
 
 
+tile_size = 40
+walls = load_map('map.txt', tile_size)
+
 #game loop
 running = True
 while running:
@@ -94,6 +97,7 @@ while running:
     # Draw / render
     screen.fill(BLACK)
     all_sprites.draw(screen)
+    walls.draw(screen)
     # after drawing everything
     pygame.display.flip()
 
