@@ -1,12 +1,12 @@
 import pygame
-from pygame.joystick import Joystick
 import math
 from Bill import Bill
 from Bob import Bob
+from Controller import KeyboardController
 from Fireball import Fireball
 #from Controller import con_movement
 from stuff import BLACK, WIDTH, HEIGHT
-
+from Walls import load_map
 
 
 
@@ -22,13 +22,13 @@ pygame.display.set_caption('Crawler')
 clock = pygame.time.Clock()
 
 
+controller = None
+
 if pygame.joystick.get_count() == 0:
-    print('Mate plug the controller in')
-
-
-joystick = pygame.joystick.Joystick(0)
-joystick.init()
-
+    controller = KeyboardController()
+else:
+    controller = pygame.joystick.Joystick(0)
+    controller.init()
 
 fireballs = pygame.sprite.Group()
 
@@ -61,9 +61,10 @@ while running:
 
     keys = pygame.key.get_pressed()
     current_time = pygame.time.get_ticks()
-    R2_axis = joystick.get_axis(5)
-    right_x = joystick.get_axis(2)
-    right_y = joystick.get_axis(3)
+
+    R2_axis = controller.get_axis(5)
+    right_x = controller.get_axis(2)
+    right_y = controller.get_axis(3)
     magnitude = math.hypot(right_x, right_y)
 
     # Update
@@ -78,21 +79,11 @@ while running:
                     all_sprites.add(fireball)
                     last_fireball_time = current_time
 
-    elif  R2_axis >= 0.5:
-        dx = (right_x / magnitude) * fireball_speed
-        dy = (right_y / magnitude) * fireball_speed
-
-        for sprite in all_sprites:
-            if isinstance(sprite, Bob):
-                if current_time - last_fireball_time > Fireball_cooldown_2:
-                    fireball = Fireball(sprite.rect.centerx, sprite.rect.centery, dx = dx, dy= dy )
-                    all_sprites.add(fireball)
-                    last_fireball_time = current_time
 
 
 
     for sprite in all_sprites:
-        sprite.update(keys, joystick)
+        sprite.update(keys, controller, walls)
 
     # Draw / render
     screen.fill(BLACK)

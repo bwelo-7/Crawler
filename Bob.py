@@ -31,7 +31,7 @@ class Bob(Thing):
         deadzone = 0.1
         left_x = joystick.get_axis(0)
         left_y = joystick.get_axis(1)
-        self.collide(walls)
+        # self.collide(walls)
 
         if abs(left_x) > deadzone or abs(left_y) > deadzone:
             self.con_movement(joystick)

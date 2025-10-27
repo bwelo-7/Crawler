@@ -11,7 +11,7 @@ class Fireball(Thing):
         self.dx = dx
         self.dy = dy
 
-    def update(self,keys, joystick):
+    def update(self,keys, joystick, walls):
         self.rect.x += int(self.dx)
         self.rect.y += int(self.dy)
 

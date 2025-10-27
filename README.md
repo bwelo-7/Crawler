@@ -9,6 +9,8 @@ requirements for the POC
    5. needs to be able to move
 4. enemy pathfinding - to prove how clever ryan is.
 
+different speed fireballs?
+
 
 steps to get to the POC:
 ```
