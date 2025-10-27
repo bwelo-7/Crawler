@@ -56,8 +56,12 @@ class Bob(Thing):
         self.dy += left_y*ax
         self.dy *= self.fy
         self.dx *= self.fx
+        if 0.1 > self.dx > -0.1:
+            self.dx = 0
+        if 0.1 > self.dy > -0.1:
+            self.dy = 0
 
-        # if keys[pygame.K_a]:
+    # if keys[pygame.K_a]:
         #     self.dx -= ax
         # elif keys[pygame.K_d]:
         #     self.dx += ax
