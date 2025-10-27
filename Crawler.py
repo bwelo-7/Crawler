@@ -8,11 +8,6 @@ from Fireball import Fireball
 from stuff import BLACK, WIDTH, HEIGHT
 from Walls import load_map
 
-
-
-
-
-
 FPS = 30
 # initialize pygame and create window
 pygame.init()
