@@ -49,13 +49,12 @@ class Bob(Thing):
         left_x = joystick.get_axis(0)
         left_y = joystick.get_axis(1)
 
-
-
-
         self.dx += left_x*ax
         self.dy += left_y*ax
+
         self.dy *= self.fy
         self.dx *= self.fx
+
         if 0.1 > self.dx > -0.1:
             self.dx = 0
         if 0.1 > self.dy > -0.1:
