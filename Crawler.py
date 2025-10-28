@@ -5,8 +5,8 @@ from Bob import Bob
 from Controller import KeyboardController
 from Fireball import Fireball
 #from Controller import con_movement
-from stuff import BLACK, WIDTH, HEIGHT
-from Walls import load_map
+from stuff import BLACK, WIDTH, HEIGHT, tile_size
+
 
 FPS = 30
 # initialize pygame and create window
@@ -39,8 +39,8 @@ fireball_speed = 10
 last_fireball_time = 0
 
 
-tile_size = 40
-walls = load_map('map.txt', tile_size)
+
+# walls = load_map('map.txt', tile_size)
 
 #game loop
 running = True
@@ -78,12 +78,12 @@ while running:
 
 
     for sprite in all_sprites:
-        sprite.update(keys, controller, walls)
+        sprite.update(keys, controller)
 
     # Draw / render
     screen.fill(BLACK)
     all_sprites.draw(screen)
-    walls.draw(screen)
+    # walls.draw(screen)
     # after drawing everything
     pygame.display.flip()
 

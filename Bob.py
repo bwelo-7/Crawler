@@ -23,7 +23,7 @@ class Bob(Thing):
     def __init__(self, x, y):
             Thing.__init__(self,x,y)
 
-    def update(self, keys, controller, walls):
+    def update(self, keys, controller):
         deadzone = 0.1
         left_x = controller.get_axis(0)
         left_y = controller.get_axis(1)
