@@ -2,8 +2,8 @@
 
 
 tile_size = 25
-WIDTH = 50 * tile_size
-HEIGHT = 32 * tile_size
+WIDTH = 50 * 25
+HEIGHT = 32 * 25
 spr_width = 20
 spr_height = 30
 proj_width = 10

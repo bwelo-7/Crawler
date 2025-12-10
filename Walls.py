@@ -3,14 +3,41 @@ import pygame
 
 from stuff import tile_size
 
-game_map =[["x","x","x","x","x","x","x","x","x"],
-      ["x","-","-","-","-","-","-","-","x"],
-      ["x","-","-","-","-","-","-","-","x"],
-      ["x","-","-","-","-","-","-","-","x"],
-      ["x","-","-","-","-","-","-","-","x"],
-      ["x","-","-","-","-","-","-","-","x"],
-      ["x","-","-","-","-","-","-","-","x"],
-      ["x","x","x","x","x","x","x","x","x"]]
+game_map = [
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+"x------xxxx---------xxxx-----------xxxx----------x",
+"x------xxxx---------xxxx-----------xxxx----------x",
+"x------xxxx---------xxxx-----------xxxx--xxxx----x",
+"x------xxxx---------xxxx-----------xxxx--xxxx----x",
+"x----------------------------------------xxxx----x",
+"x----------------------------------------xxxx----x",
+"x------xxxx---------xxxx----------------xxxx-----x",
+"x------xxxx---------xxxx----------------xxxx-----x",
+"x------xxxx---------xxxx-------------------------x",
+"xxxxxxxxxxxx--------xxxx-------------------------x",
+"x----------x--------xxxx----xxxxxxxxxxxxxxxxx----x",
+"x----------x----------------x---------------x----x",
+"x----------x----------------x---------------x---x",
+"x----------xxxxxxxxxxxxx----x---------------x---x",
+"x---------------------------x---------------x---x",
+"x---------------------------x---------------x---x",
+"x----------xxxxxxxxxxxxx----x---------------x---x",
+"x----------x----------------x---------------x---x",
+"x----------x----------------x---------------x---x",
+"x----------x--------xxxx----xxxxxxxxxxxxxxxxx---x",
+"xxxxxxxxxxxx--------xxxx------------------------x",
+"x------xxxx---------xxxx------------------------x",
+"x------xxxx---------xxxx----------------xxxx----x",
+"x------xxxx---------xxxx----------------xxxx----x",
+"x----------------------------------------xxxx----x",
+"x----------------------------------------xxxx----x",
+"x------xxxx---------xxxx-----------xxxx--xxxx----x",
+"x------xxxx---------xxxx-----------xxxx--xxxx----x",
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+]
+
+# Convert from strings to lists:
+game_map = [list(row) for row in game_map]
 
 
 
@@ -43,16 +70,17 @@ def wall_collisions(sprite, walls):
     for wall in hits:
         if sprite.dx > 0:
             sprite.rect.right = wall.rect.left
-            sprite.dx = 0
+
         elif sprite.dx < 0:
             sprite.rect.left  = wall.rect.right
-            sprite.dx = 0
+
 
         if sprite.dy > 0:
             sprite.rect.bottom = wall.rect.top
-            sprite.dy = 0
+
         if sprite.dy < 0:
             sprite.rect.top = wall.rect.bottom
+
 
 
 

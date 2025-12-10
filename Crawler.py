@@ -31,7 +31,7 @@ fireballs = pygame.sprite.Group()
 
 all_sprites = pygame.sprite.Group()
 
-all_sprites.add(Bob(200, 200))
+all_sprites.add(Bob(60, 70))
 
 all_sprites.add(Bill(300, 300))
 
