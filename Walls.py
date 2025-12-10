@@ -1,7 +1,9 @@
 import pygame
 
 
-map =[["x","x","x","x","x","x","x","x","x"],
+from stuff import tile_size
+
+game_map =[["x","x","x","x","x","x","x","x","x"],
       ["x","-","-","-","-","-","-","-","x"],
       ["x","-","-","-","-","-","-","-","x"],
       ["x","-","-","-","-","-","-","-","x"],
@@ -11,10 +13,29 @@ map =[["x","x","x","x","x","x","x","x","x"],
       ["x","x","x","x","x","x","x","x","x"]]
 
 
-for y, row in enumerate(map):
-    print ("\n")
-    for x,tile in enumerate(map):
-        print(x)
+
+class Wall(pygame.sprite.Sprite):
+    def __init__(self, x, y, tile_size):
+        super().__init__()
+        self.image = pygame.Surface((tile_size, tile_size))
+        self.image.fill((105, 95, 110))
+        self.rect = self.image.get_rect(topleft=(x, y))
+
+
+class Loadmap:
+    def __init__(self, game_map, tile_size):
+            self.walls = pygame.sprite.Group()
+
+
+            for row_index, row in enumerate(game_map):
+                for col_index, tile in enumerate(row):
+                    if tile == 'x':
+                        pixel_y = row_index * tile_size
+                        pixel_x = col_index * tile_size
+                        wall = Wall(pixel_x, pixel_y, tile_size)
+                        self.walls.add(wall)
+
+
 
 
 def wall_collisions(sprite, walls):
@@ -32,3 +53,6 @@ def wall_collisions(sprite, walls):
             sprite.dy = 0
         if sprite.dy < 0:
             sprite.rect.top = wall.rect.bottom
+
+
+

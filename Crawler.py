@@ -6,6 +6,8 @@ from Controller import KeyboardController
 from Fireball import Fireball
 #from Controller import con_movement
 from stuff import BLACK, WIDTH, HEIGHT, tile_size
+from Walls import *
+
 
 
 FPS = 30
@@ -33,10 +35,16 @@ all_sprites.add(Bob(200, 200))
 
 all_sprites.add(Bill(300, 300))
 
+
+
 Fireball_cooldown = 800
 Fireball_cooldown_2 = 400
 fireball_speed = 10
 last_fireball_time = 0
+
+
+map_loader = Loadmap(game_map, tile_size)
+walls = map_loader.walls
 
 
 
@@ -82,6 +90,11 @@ while running:
 
     # Draw / render
     screen.fill(BLACK)
+    for sprite in all_sprites:
+        wall_collisions(sprite , walls)
+    walls.draw(screen)
+
+
     all_sprites.draw(screen)
     # walls.draw(screen)
     # after drawing everything
