@@ -1,6 +1,10 @@
 import pygame
 from Bob import Thing
+from Crawler import walls
 from stuff import ORANGE, proj_width, proj_height, ax, ay, speed, WIDTH, HEIGHT
+
+
+
 
 class Fireball(Thing):
     def __init__(self, x, y, dx = 0, dy = 10):
@@ -14,6 +18,8 @@ class Fireball(Thing):
     def update(self,keys, joystick):
         self.rect.x += int(self.dx)
         self.rect.y += int(self.dy)
+        if pygame.sprite.spritecollide(self, walls):
+            self.kill()
 
 
         if self.rect.left > WIDTH or self.rect.right < 0 or self.rect.top > HEIGHT or self.rect.bottom < 0:

@@ -3,7 +3,7 @@ import math
 from Bill import Bill
 from Bob import Bob
 from Controller import KeyboardController
-from Fireball import Fireball
+from Projectiles import Fireball
 #from Controller import con_movement
 from stuff import BLACK, WIDTH, HEIGHT, tile_size
 from Walls import *
@@ -78,9 +78,10 @@ while running:
         for sprite in all_sprites:
             if isinstance(sprite, Bob):
                 if current_time - last_fireball_time > Fireball_cooldown:
-                    fireball = Fireball(sprite.rect.centerx, sprite.rect.centery, dx = dx, dy= dy )
+                    fireball = Fireball(sprite.rect.centerx, sprite.rect.centery, dx =dx, dy =dy )
                     all_sprites.add(fireball)
                     last_fireball_time = current_time
+
 
 
 

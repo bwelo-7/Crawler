@@ -18,8 +18,8 @@ GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 ORANGE = (225, 165, 0)
 
-speed = 2
-ax = 7
-ay = 7
+speed = 5
+ax = 1.1
+ay = 1.1
 t_ax = 1
 t_ax = 1

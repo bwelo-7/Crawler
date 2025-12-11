@@ -65,23 +65,25 @@ class Loadmap:
 
 
 
-def wall_collisions_x(sprite, walls):
-    hits = pygame.sprite.spritecollide(sprite,walls, False)
+def wall_collisions(sprite, walls):
+    sprite.rect.x += int(round(sprite.dx))
+    hits = pygame.sprite.spritecollide(sprite, walls, False)
     for wall in hits:
         if sprite.dx > 0:
             sprite.rect.right = wall.rect.left
-
         elif sprite.dx < 0:
-            sprite.rect.left  = wall.rect.right
+            sprite.rect.left = wall.rect.right
+        sprite.dx = 0
 
-def wall_colisions_y(sprite, walls):
-    hits = pygame.sprite.spritecollide(sprite,walls, False)
+
+    sprite.rect.y += int(round(sprite.dy))
+    hits = pygame.sprite.spritecollide(sprite, walls, False)
     for wall in hits:
         if sprite.dy > 0:
             sprite.rect.bottom = wall.rect.top
-
-        if sprite.dy < 0:
+        elif sprite.dy < 0:
             sprite.rect.top = wall.rect.bottom
+        sprite.dy = 0
 
 
 
