@@ -1,6 +1,6 @@
 import pygame
 from Bob import Thing
-from Crawler import walls
+
 from stuff import ORANGE, proj_width, proj_height, ax, ay, speed, WIDTH, HEIGHT
 
 
@@ -15,11 +15,17 @@ class Fireball(Thing):
         self.dx = dx
         self.dy = dy
 
-    def update(self,keys, joystick):
-        self.rect.x += int(self.dx)
-        self.rect.y += int(self.dy)
-        if pygame.sprite.spritecollide(self, walls):
-            self.kill()
+
+    def update(self, walls=None):
+        # Move in small steps to prevent skipping walls
+        steps = int(max(abs(self.dx), abs(self.dy), 1))
+        for _ in range(steps):
+            self.rect.x += self.dx / steps
+            self.rect.y += self.dy / steps
+            if walls and pygame.sprite.spritecollideany(self, walls):
+                self.kill()
+                break
+
 
 
         if self.rect.left > WIDTH or self.rect.right < 0 or self.rect.top > HEIGHT or self.rect.bottom < 0:

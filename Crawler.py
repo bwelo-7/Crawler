@@ -3,7 +3,7 @@ import math
 from Bill import Bill
 from Bob import Bob
 from Controller import KeyboardController
-from Projectiles import Fireball
+import Projectiles
 #from Controller import con_movement
 from stuff import BLACK, WIDTH, HEIGHT, tile_size
 from Walls import *
@@ -78,21 +78,28 @@ while running:
         for sprite in all_sprites:
             if isinstance(sprite, Bob):
                 if current_time - last_fireball_time > Fireball_cooldown:
-                    fireball = Fireball(sprite.rect.centerx, sprite.rect.centery, dx =dx, dy =dy )
+                    fireball = Projectiles.Fireball(sprite.rect.centerx, sprite.rect.centery, dx =dx, dy =dy )
                     all_sprites.add(fireball)
+                    fireballs.add(fireball)
                     last_fireball_time = current_time
 
+    for sprite in all_sprites:
+        if isinstance(sprite, Projectiles.Fireball):
+            sprite.update(walls)
+        else:
+            sprite.update(keys, controller)
 
-
+    for fireball in fireballs:
+        if pygame.sprite.spritecollide(fireball, walls, False):
+            fireball.kill()
 
 
     for sprite in all_sprites:
-        sprite.update(keys, controller)
+        if not isinstance(sprite, Projectiles.Fireball):
+            wall_collisions(sprite, walls)
 
     # Draw / render
     screen.fill(BLACK)
-    for sprite in all_sprites:
-        wall_collisions(sprite , walls)
     walls.draw(screen)
 
 
