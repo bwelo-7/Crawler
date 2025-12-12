@@ -37,8 +37,6 @@ class Bob(Thing):
         self.dx = bracket(self.dx, -10, 10)
         self.dy = bracket(self.dy, -10, 10)
 
-        self.rect.x += (self.dx)  # self.dx changes lots, contant adds means accel
-        self.rect.y += (self.dy)
 
         self.rect.x = bracket(self.rect.x, 0, WIDTH - spr_width)
         self.rect.y = bracket(self.rect.y, 0, HEIGHT - spr_height)

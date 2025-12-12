@@ -19,7 +19,7 @@ BLUE = (0, 0, 255)
 ORANGE = (225, 165, 0)
 
 speed = 5
-ax = 1.1
-ay = 1.1
+ax = 3
+ay = 3
 t_ax = 1
 t_ax = 1
