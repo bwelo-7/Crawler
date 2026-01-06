@@ -5,7 +5,7 @@ from stuff import GREEN, WIDTH, HEIGHT, spr_width, spr_height, ax, ay, speed
 from utils import bracket
 
 class Thing(pygame.sprite.Sprite):
-    def __init__(self, x, y):
+    def __init__(self, x, y, health):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface((spr_width, spr_height))
         self.image.fill(GREEN)
@@ -19,9 +19,19 @@ class Thing(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
+        self.max_health = health
+        self.health = health
+
+    def take_damage(self, amount):
+        self.health -= amount
+        if self.health <= 0:
+            self.kill()
+
+
+
 class Bob(Thing):
     def __init__(self, x, y):
-            Thing.__init__(self,x,y)
+            Thing.__init__(self,x,y, 10)
 
     def update(self, keys, controller):
         deadzone = 0.1

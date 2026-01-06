@@ -13,7 +13,7 @@ different speed fireballs?
 
 
 steps to get to the POC:
-```
+```   
 [x] a map
 [x] your Bob is an ice skater.
 [x] you can move your Bob
@@ -22,7 +22,7 @@ steps to get to the POC:
 [x] Bob can shoot a fireball in the direction that you are facing
 [] fireball hits enemy and makes them dissapear
 [] enemy runs towards Bob
-[] map contains walls
+[x] map contains walls
 [] enemy moves around walls to get to Bob.
 [] game over when enemy gets to bob 
 ```

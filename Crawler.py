@@ -29,12 +29,16 @@ else:
 
 fireballs = pygame.sprite.Group()
 
+enemys = pygame.sprite.Group()
+monster = Bill(300,300)
+
+enemys.add(monster)
+
 all_sprites = pygame.sprite.Group()
 
 all_sprites.add(Bob(60, 70))
 
-all_sprites.add(Bill(300, 300))
-
+all_sprites.add(monster)
 
 
 Fireball_cooldown = 800
@@ -70,18 +74,21 @@ while running:
     right_y = controller.get_axis(3)
     magnitude = math.hypot(right_x, right_y)
 
-    # Update
-    if R2_axis > -0.5 and magnitude > 0.1:
-        dx = (right_x / magnitude) * fireball_speed
-        dy = (right_y / magnitude) * fireball_speed
+    for sprite in all_sprites:
+        if isinstance(sprite, Bob):
+            if R2_axis > -0.5 and current_time - last_fireball_time > Fireball_cooldown:
+                # avoid divide by zero
+                if magnitude > 0.1:
+                    dx = (right_x / magnitude) * fireball_speed
+                    dy = (right_y / magnitude) * fireball_speed
+                else:
+                    dx = 0
+                    dy = -fireball_speed  # default straight up
 
-        for sprite in all_sprites:
-            if isinstance(sprite, Bob):
-                if current_time - last_fireball_time > Fireball_cooldown:
-                    fireball = Projectiles.Fireball(sprite.rect.centerx, sprite.rect.centery, dx =dx, dy =dy )
-                    all_sprites.add(fireball)
-                    fireballs.add(fireball)
-                    last_fireball_time = current_time
+                fireball = Projectiles.Fireball(sprite.rect.centerx, sprite.rect.centery, dx=dx, dy=dy)
+                all_sprites.add(fireball)
+                fireballs.add(fireball)
+                last_fireball_time = current_time
 
     for sprite in all_sprites:
         if isinstance(sprite, Projectiles.Fireball):
@@ -92,6 +99,14 @@ while running:
     for fireball in fireballs:
         if pygame.sprite.spritecollide(fireball, walls, False):
             fireball.kill()
+
+
+    for fireball in fireballs:
+        hits = pygame.sprite.spritecollide(fireball, enemys, False)
+        for enemy in hits:
+            enemy.take_damage(1)
+            fireball.kill()
+
 
 
     for sprite in all_sprites:
