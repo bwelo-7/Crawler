@@ -1,5 +1,5 @@
 import pygame
-
+import heapq
 
 from stuff import tile_size
 
@@ -88,3 +88,64 @@ def wall_collisions(sprite, walls):
 
 
 
+def get_walkable_grid(game_map):
+    grid = []
+    for row in game_map:
+        grid_row = []
+        for tile in row:
+            if tile == 'x':  # wall
+                grid_row.append(1)  # blocked
+            else:
+                grid_row.append(0)  # walkable
+        grid.append(grid_row)
+    return grid
+
+
+
+def astar(start, goal, grid):
+    width = len(grid[0])
+    height = len(grid)
+
+    def h(a, b):
+        # Manhattan distance heuristic
+        return abs(a[0] - b[0]) + abs(a[1] - b[1])
+
+    open_set = []
+    heapq.heappush(open_set, (0 + h(start, goal), 0, start))
+    came_from = {}
+    g_score = {start: 0}
+
+    while open_set:
+        _, cost, current = heapq.heappop(open_set)
+
+        if current == goal:
+            # Reconstruct path
+            path = []
+            while current in came_from:
+                path.append(current)
+                current = came_from[current]
+            path.reverse()
+            return path
+
+        neighbors = [
+            (current[0] + dx, current[1] + dy)
+            for dx, dy in [(1,0), (-1,0), (0,1), (0,-1)]
+        ]
+        for nx, ny in neighbors:
+            if 0 <= nx < width and 0 <= ny < height and grid[ny][nx] == 0:
+                tentative_g = g_score[current] + 1
+                if (nx, ny) not in g_score or tentative_g < g_score[(nx, ny)]:
+                    g_score[(nx, ny)] = tentative_g
+                    priority = tentative_g + h((nx, ny), goal)
+                    heapq.heappush(open_set, (priority, tentative_g, (nx, ny)))
+                    came_from[(nx, ny)] = current
+    return []  # no path found
+
+
+def pixel_to_grid(pos):
+    x, y = pos
+    return x // tile_size, y // tile_size
+
+def grid_to_pixel(grid_pos):
+    x, y = grid_pos
+    return x * tile_size + tile_size//2, y * tile_size + tile_size//2

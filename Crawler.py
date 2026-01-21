@@ -28,16 +28,19 @@ else:
     controller.init()
 
 fireballs = pygame.sprite.Group()
-
+player = Bob(60,70)
 enemys = pygame.sprite.Group()
-monster = Bill(300,300)
+monster = Bill(300,300, target=player)
+jim = Bill(700, 600, target=player)
 
+enemys.add(jim)
 enemys.add(monster)
 
 all_sprites = pygame.sprite.Group()
 
-all_sprites.add(Bob(60, 70))
+all_sprites.add(player)
 
+all_sprites.add(jim)
 all_sprites.add(monster)
 
 
@@ -112,6 +115,18 @@ while running:
     for sprite in all_sprites:
         if not isinstance(sprite, Projectiles.Fireball):
             wall_collisions(sprite, walls)
+
+    current_time = pygame.time.get_ticks()
+
+
+    for bob in all_sprites:
+        if isinstance(bob, Bob):
+            hits = pygame.sprite.spritecollide(bob, enemys, False)
+            if hits:
+                if current_time - bob.last_hit_time > bob.hit_cooldown:
+                    bob.take_damage(1)
+                    bob.last_hit_time = current_time
+    print(player.life_status())
 
     # Draw / render
     screen.fill(BLACK)

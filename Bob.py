@@ -1,5 +1,5 @@
 import pygame
-from pygame.joystick import Joystick
+
 
 from stuff import GREEN, WIDTH, HEIGHT, spr_width, spr_height, ax, ay, speed
 from utils import bracket
@@ -26,12 +26,20 @@ class Thing(pygame.sprite.Sprite):
         self.health -= amount
         if self.health <= 0:
             self.kill()
+    def life_status(self):
+        if self.health <= 0:
+            return 'Bob is dead'
+        else:
+            return 'Bob is alive'
 
 
 
 class Bob(Thing):
     def __init__(self, x, y):
             Thing.__init__(self,x,y, 10)
+
+            self.last_hit_time = 0
+            self.hit_cooldown = 500
 
     def update(self, keys, controller):
         deadzone = 0.1
@@ -50,8 +58,9 @@ class Bob(Thing):
 
         self.rect.x = bracket(self.rect.x, 0, WIDTH - spr_width)
         self.rect.y = bracket(self.rect.y, 0, HEIGHT - spr_height)
-
         print("dx:", self.dx, "x: ", self.rect.x, "dy:", self.dy, "y: ", self.rect.y)
+
+
 
     def dynamic_movement(self, joystick):
         left_x = joystick.get_axis(0)
